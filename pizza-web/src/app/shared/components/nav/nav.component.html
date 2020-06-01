@@ -1,0 +1,28 @@
+<header>
+  <div class="container">
+    <a routerLink="/" class="logo">
+      Welcome to {{ title }}!
+    </a>
+    <nav>
+      <ul>
+        <li>
+          <a 
+            routerLink="/" 
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        </li>
+        <li>
+          <a 
+            routerLink="/order" 
+            routerLinkActive="active-link">Order</a>
+        </li>
+        <li>
+          <a 
+            routerLink="/about" 
+            routerLinkActive="active-link"
+            [routerLinkActiveOptions]="{ exact: true }">About</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>

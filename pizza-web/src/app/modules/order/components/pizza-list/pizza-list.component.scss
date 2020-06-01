@@ -1,0 +1,62 @@
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  width: 50%;
+}
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card .card-container {
+  padding: 2px 16px;
+}
+
+.row div div.column {
+  float: left;
+  width: 20%;
+  padding: 16px 0px;
+}
+
+.card .card-container div.picture {
+  float: left;
+  width: 80%;
+}
+
+.card .card-container div.order {
+  float: right;
+  width: 20%;
+}
+
+.card .card-container div.picture img {
+  height: 75px;
+  width: 100px;
+  padding: 16px 0px;
+}
+
+.card .card-container div.order button {
+  padding: 0px 16px 0px 16px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#tqpanelContainer.sliderContainer.TQWrapper {
+  background-color: white !important;
+  width: calc(100% - 400px);
+  right: 0px;
+  top: 162px !important;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.sliderContainer {
+  background: whitesmoke !important;
+  height: 80% !important;
+  margin-top: 0px !important;
+  position: absolute;
+  z-index: 10 !important;
+}

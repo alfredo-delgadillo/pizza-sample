@@ -1,0 +1,30 @@
+.pizza-container {
+    float: left;
+  div.picture img {
+    padding: 16px 0px;
+  }
+  div.body {
+      float: bottom;
+  }
+}
+
+div.toppings {
+  display: inline-block;
+  position: relative;  
+  width: 20%;
+}
+
+div.toppings {
+  padding: 0px 60px;
+}
+
+div.toppings .column, div.selected .column {
+  float: left;
+  width: 50%;
+}
+
+div.toppings .row:after, div.selected .row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

@@ -1,0 +1,41 @@
+<section>
+  <div class="pizza-container">
+    <div class="picture">
+      <img src="{{pizza.picture}}" alt="">
+    </div>
+    <div class="body">
+      <h4><b>{{pizza.name}}</b></h4>
+      <p>{{pizza.description}}</p>
+      <h5><b>Toppings</b></h5>
+      <div class="selected">
+        <div *ngFor="let ptop of pizzaToppings | async">
+          <div class="row">
+            <div class="column">
+              <span>{{ptop.name}}</span>
+            </div>
+            <div class="column">
+              <a [routerLink]=""
+                (click)="removeTopping($event, ptop.id); false">Remove</a>
+            </div> 
+          </div>
+        </div>
+      </div>
+      <div class="toppings">
+        <button routerLink="/order" (click)="saverOrder($event)">Order Now</button>
+      </div>
+    </div>
+  </div>
+  <div class="toppings">
+    <h5><b>Select Toppings</b></h5>
+    <div *ngFor="let topping of toppings | async">
+      <div class="row">
+        <div class="column">
+          <span>{{topping.name}}</span>
+        </div>
+        <div class="column">
+          <a [routerLink]="" (click)="addTopping($event, topping.id)">Add</a>
+        </div> 
+      </div>
+    </div>
+  </div>
+</section>

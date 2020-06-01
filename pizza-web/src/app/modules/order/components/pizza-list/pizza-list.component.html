@@ -1,0 +1,23 @@
+<section>
+  <p>
+    Please place your order here! <button id="placeOrder" (click)="placeOrder()">Place order</button>
+  </p>
+  <div class="row">
+    <div *ngFor="let pizza of pizzas | async">
+      <div class="column">
+        <div class="card">
+          <div class="card-container">
+            <div class="picture">
+              <img src="{{pizza.picture}}" alt="">
+            </div>
+            <div class="order">
+              <button [routerLink]="['order-pizza', pizza.id]">Order this</button>
+            </div>
+            <h4><b>{{pizza.name}}</b></h4>
+            <p>{{pizza.description}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

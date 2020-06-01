@@ -1,0 +1,17 @@
+-- Script Date: 5/31/2020 6:45 PM  - ErikEJ.SqlCeScripting version 3.5.2.86
+INSERT INTO [Toppings] ([Id],[Name],[Description],[PizzaId]) VALUES (
+1,'Ham','Description',1);
+INSERT INTO [Toppings] ([Id],[Name],[Description],[PizzaId]) VALUES (
+2,'Pineapple','Description',1);
+INSERT INTO [Toppings] ([Id],[Name],[Description],[PizzaId]) VALUES (
+3,'Peperoni','Description',2);
+INSERT INTO [Toppings] ([Id],[Name],[Description],[PizzaId]) VALUES (
+4,'Potatoes','Description',3);
+INSERT INTO [Toppings] ([Id],[Name],[Description],[PizzaId]) VALUES (
+5,'Cabbage','Description',3);
+INSERT INTO [Toppings] ([Id],[Name],[Description],[PizzaId]) VALUES (
+6,'Strogonoff','Description',4);
+INSERT INTO [Toppings] ([Id],[Name],[Description],[PizzaId]) VALUES (
+7,'Corn','Description',5);
+INSERT INTO [Toppings] ([Id],[Name],[Description],[PizzaId]) VALUES (
+8,'Hotdog','Description',6);

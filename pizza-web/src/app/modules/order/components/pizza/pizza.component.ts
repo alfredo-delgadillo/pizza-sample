@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { filter, map, find, first } from 'rxjs/operators';
+import { catchError, map, find, first } from 'rxjs/operators';
 import { PizzaService } from 'src/app/core/services/http/pizza.service';
 import { Pizza } from '../../models/pizza.model';
 import { Topping } from '../../models/topping.model';
+import { MessageService } from 'src/app/core/services/message.service';
 
 @Component({
   selector: 'order-pizza',
@@ -16,10 +17,16 @@ export class PizzaComponent implements OnInit {
   private _availableToppings: Topping[];
   private _selectedToppings: Topping[];
 
-  constructor(private route: ActivatedRoute, private service: PizzaService) { }
+  isSavingOrder: boolean = false;
+
+  constructor(
+    private router: Router,
+    private activeRouter: ActivatedRoute, 
+    private service: PizzaService,
+    private popup: MessageService) { }
 
   ngOnInit() {
-    const id: number = +this.route.snapshot.paramMap.get("id");
+    const id: number = +this.activeRouter.snapshot.paramMap.get("id");
     this.service.getPizza(id)
       .subscribe(
         data => {
@@ -31,6 +38,14 @@ export class PizzaComponent implements OnInit {
             );
         }
       );
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
+    return (error: any): Observable<T> => {  
+      console.error(error);
+      this.popup.showMessage(error, true);
+      return of(result as T);
+    };
   }
 
   get pizza() {
@@ -98,16 +113,16 @@ export class PizzaComponent implements OnInit {
   }
 
   saverOrder(event: MouseEvent){
+    this.isSavingOrder = true;
     let ret:boolean;
     this.service.orderPizza(this._pizza, this._selectedToppings)
-      .subscribe(
-        result => ret = result
-      );
+      .pipe(
+        map(x=> ret = x),
+        catchError(this.handleError<boolean>('saverOrder', false)));
+    this.isSavingOrder = false;
     if (ret){
-      alert("Order placed successfully");
-    }
-    else {
-      event.preventDefault();
+      this.popup.showMessage("Order placed successfully");
+      this.router.navigateByUrl('/order');
     }
   }
 }

@@ -1,32 +1,91 @@
 /* You can add global styles to this file, and also import other style files */
-body, html {
-    height: 100%;
-    margin: 0 auto;
+
+:root {
+  --primary-color: #7700FF;
+}
+
+body,
+html {
+  height: 100%;
+  margin: 0 auto;
 }
 
 body {
-    font-family: 'Tahoma';
-    font-size: 18px;
+  font-family: 'Tahoma';
+  font-size: 18px;
 }
 
 a {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 .container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 1.3em;
-    display: grid;
-    grid-template-columns: 30% auto;
+  width: 80%;
+  margin: 0 auto;
+  padding: 1.3em;
+  display: grid;
+  grid-template-columns: 30% auto;
 
-    a {
-        color: white;
-    }
+  a {
+    color: white;
+  }
 }
 
 section {
-    width: 80%;
-    margin: 0 auto;
-    padding: 2em;
+  width: 80%;
+  margin: 0 auto;
+  padding: 2em;
+}
+
+.progress {
+  display: block;
+  visibility: hidden;
+  border-radius: 6px;
+  border: 1px solid #1DAABD;
+  overflow-y: hidden;
+  max-height: 100%;
+  outline: 0 !important;
+  padding-bottom: 3px;
+  top: 16px;
+  bottom: 16px;
+  right: 4em;
+  left: 4em;
+  margin: auto;
+  background-color: #e6f0f4;
+  box-shadow: 0 0 12px 0 rgba(29, 170, 189, .3);
+  overflow: hidden;
+  z-index: 5;
+
+  .loading {
+    min-height: 128px;
+    min-width: 128px;
+    visibility: visible;
+    position: fixed;
+
+    :before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 128px;
+      height: 128px;
+      border: 12.8px solid rgba(67, 128, 152, .5);
+      border-radius: 50%;
+      border-left-color: var(--primary-color);
+      border-top-color: var(--primary-color);
+      animation: spin 1.8s linear infinite;
+      transform-origin: 0 0;
+      z-index: 1;
+    }
+  }
+}
+
+.materialdialog .error {
+    background-color: rgba(255, 0, 0, 0.719);
+    color: white;    
+}
+
+.materialdialog .error button {
+    background-color:orangered;
+    color: white;
 }

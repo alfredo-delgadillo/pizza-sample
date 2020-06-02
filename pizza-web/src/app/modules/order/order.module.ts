@@ -5,13 +5,16 @@ import { PizzaListComponent } from './components/pizza-list/pizza-list.component
 import { PizzaService } from 'src/app/core/services/http/pizza.service';
 import { PizzaComponent } from './components/pizza/pizza.component';
 import { ToppingComponent } from './components/topping/topping.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MessageService } from 'src/app/core/services/message.service';
 
 @NgModule({
   declarations: [PizzaListComponent, PizzaComponent, ToppingComponent],
   imports: [
     CommonModule,
-    OrderRoutingModule
+    OrderRoutingModule,
+    MatSnackBarModule
   ],
-  providers: [PizzaService]
+  providers: [PizzaService, MessageService]
 })
 export class OrderModule { }

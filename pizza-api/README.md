@@ -2,6 +2,13 @@
 
 This project was developed using Visual Studio - .Net Code 3.1 and the Sqlite database was generated with [Entity Framework CLI](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet) version EF Core 3.x
 
+## Ef Command Lines
+
+dotnet ef database drop  --project ../pizza-data
+dotnet ef migrations add init --project ../pizza-data
+dotnet ef migrations remove  --project ../pizza-data
+dotnet ef database update  --project ../pizza-data
+
 ## Development server
 
 Open pizza-api.sln

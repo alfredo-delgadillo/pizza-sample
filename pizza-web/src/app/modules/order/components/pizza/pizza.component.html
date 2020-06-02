@@ -1,4 +1,6 @@
 <section>
+  <div tabindex="-1" [ngClass]="'progress' + isSavingOrder? ' loading' : ''" role="dialog">
+  </div>
   <div class="pizza-container">
     <div class="picture">
       <img src="{{pizza.picture}}" alt="">
@@ -20,8 +22,8 @@
           </div>
         </div>
       </div>
-      <div class="toppings">
-        <button routerLink="/order" (click)="saverOrder($event)">Order Now</button>
+      <div class="savebutton">
+        <button (click)="saverOrder($event)">Order Now</button>
       </div>
     </div>
   </div>

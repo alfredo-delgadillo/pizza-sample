@@ -8,7 +8,7 @@ using pizza_data;
 namespace pizza_data.Migrations
 {
     [DbContext(typeof(OrdersDBContext))]
-    [Migration("20200601063245_init")]
+    [Migration("20200606145104_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

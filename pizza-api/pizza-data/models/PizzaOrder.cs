@@ -18,7 +18,9 @@ namespace pizza_data.models
         public int Id { get; set; }
         [JsonIgnore]
         public int PizzaId { get; set; }
+        [JsonIgnore]
         public virtual Pizza Pizza { get; set; }
+        [JsonIgnore]
         public virtual List<PizzaOrderDetail> Orders { get; private set; }
     }
 }

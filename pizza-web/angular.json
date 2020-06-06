@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "style": "sass"
+          "style": "scss"
         }
       },
       "architect": {
@@ -141,5 +141,8 @@
       }
     }
   },
-  "defaultProject": "pizza-sample"
+  "defaultProject": "pizza-sample",
+  "cli": {
+    "analytics": "ff735e7e-a3e8-46ed-9799-3ece35bdffae"
+  }
 }

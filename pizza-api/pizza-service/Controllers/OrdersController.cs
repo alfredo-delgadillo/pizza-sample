@@ -26,7 +26,7 @@ namespace pizza_service.Controllers
         public async Task<IActionResult> GetOrders()
         {
             this._logger.LogInformation($"{nameof(GetOrders)} called");
-            var pizzas = await _context.Pizzas.ToListAsync();
+            var pizzas = await _context.PizzaOrders.ToListAsync();
             this._logger.LogInformation($"{nameof(GetOrders)} correctly loaded data");
             if (pizzas.Any())
                 return Ok(pizzas);
@@ -38,7 +38,7 @@ namespace pizza_service.Controllers
         public async Task<IActionResult> GetOrder(int id)
         {
             this._logger.LogInformation($"{nameof(GetOrder)} called");
-            var pizza = await _context.Pizzas.FirstOrDefaultAsync(x => x.Id == id);
+            var pizza = await _context.PizzaOrders.FirstOrDefaultAsync(x => x.Id == id);
             this._logger.LogInformation($"{nameof(GetOrder)} correctly loaded data");
             if (pizza != null)
                 return Ok(pizza);
@@ -55,7 +55,8 @@ namespace pizza_service.Controllers
                 var service = new OrdersService(_context);
                 bool ret = await service.SaveOrder(order);
                 this._logger.LogInformation($"{nameof(PostOrder)} correctly loaded data");
-                return Ok(true);
+                if (ret)
+                    return Ok(ret);
             }
 
             this._logger.LogInformation($"{nameof(PostOrder)} unexpected data provided");

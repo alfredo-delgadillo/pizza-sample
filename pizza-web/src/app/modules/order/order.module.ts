@@ -7,6 +7,7 @@ import { PizzaComponent } from './components/pizza/pizza.component';
 import { ToppingComponent } from './components/topping/topping.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MessageService } from 'src/app/core/services/message.service';
+import { ProgressService } from 'src/app/core/services/ui/progress.service';
 
 @NgModule({
   declarations: [PizzaListComponent, PizzaComponent, ToppingComponent],
@@ -15,6 +16,6 @@ import { MessageService } from 'src/app/core/services/message.service';
     OrderRoutingModule,
     MatSnackBarModule
   ],
-  providers: [PizzaService, MessageService]
+  providers: [PizzaService, MessageService, ProgressService]
 })
 export class OrderModule { }

@@ -48,11 +48,11 @@ namespace pizza_service.Controllers
         public async Task<IActionResult> GetToppings(int id)
         {
             this._logger.LogInformation($"{nameof(GetToppings)} called");
-            var toppings = await _context.Toppings.ToListAsync();
+            var toppings = await _context.Toppings.Where(x => x.PizzaId == id).ToListAsync();
             this._logger.LogInformation($"{nameof(GetToppings)} correctly loaded data");
             
             if (toppings.Any())
-                return Ok(toppings.Where(x => x.PizzaId == id));
+                return Ok(toppings);
             else
                 return NotFound();
         }

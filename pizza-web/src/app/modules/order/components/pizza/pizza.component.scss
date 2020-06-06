@@ -9,8 +9,9 @@
 }
 
 div.savebutton {
-  display: block;
-  position: relative;  
+  display: flex;
+  position: relative;
+  padding: 80px 60px;
   width: 20%;
 }
 
@@ -18,9 +19,6 @@ div.toppings {
   display: inline-block;
   position: relative;  
   width: 20%;
-}
-
-div.toppings {
   padding: 0px 60px;
 }
 

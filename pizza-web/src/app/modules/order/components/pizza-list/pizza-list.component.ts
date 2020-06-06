@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { PizzaService } from 'src/app/core/services/http/pizza.service';
-import { Router } from '@angular/router';
 import { Pizza } from '../../models/pizza.model';
+import { PizzaError } from 'src/app/core/errors/pizzaerror.mode';
+import { ProgressService } from 'src/app/core/services/ui/progress.service';
 
 @Component({
   selector: 'app-pizza-list',
@@ -10,25 +11,28 @@ import { Pizza } from '../../models/pizza.model';
   styleUrls: ['./pizza-list.component.scss']
 })
 export class PizzaListComponent implements OnInit {
-  private _showPanel: boolean = false;
   pizzas: Observable<Array<Pizza>>;
 
-  constructor(private service: PizzaService, private router: Router) {
+  constructor(private service: PizzaService,
+    private progress: ProgressService,
+    private vcr: ViewContainerRef) {
+      progress.viewContainerRef = vcr;
   }
 
   ngOnInit() {
   }
 
-  get isPlacingOrder() {
-    return this._showPanel;
+  listPizzas() {
+    this.progress.showProgress();
+    this.service.getPizzas()
+      .subscribe(response => {
+        this.progress.hideProgress();
+        this.pizzas = of(response);
+      },
+        (err: PizzaError) => {
+          this.progress.hideProgress();
+          this.progress.showMessage(err.message, true);
+        });
   }
 
-  placeOrder() {
-    this.pizzas = this.service.getPizzas();
-  }
-
-  order(pizza: Pizza) {
-    this._showPanel = true;
-    this.router.navigateByUrl('/order/order-pizza', { state: pizza });
-  }
 }

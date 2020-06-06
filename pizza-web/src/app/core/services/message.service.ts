@@ -6,12 +6,19 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class MessageService {
   
-  constructor(public popup: MatSnackBar) { }
+  constructor(private popup: MatSnackBar) { }
   
   showMessage(message: string, isError: boolean = false): void {
-    if (isError)    
-    this.popup.open(message);
+    let className: string;
+    if (isError) 
+      className = 'error';
     else
-    this.popup.open(message, 'x', {panelClass: ['materialdialog', 'error']});
+      className = 'success';
+
+    this.popup.open(message, 'X', {
+      panelClass: [className],
+      verticalPosition: 'top',
+      horizontalPosition: 'center'
+    });
   }
 }

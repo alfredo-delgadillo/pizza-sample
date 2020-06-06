@@ -16,10 +16,6 @@ namespace pizza_data
                 .AddEntityFrameworkSqlite()
                 .AddDbContext<OrdersDBContext>(
                     options => options.UseSqlite());
-            /*using (var c = new OrdersDBContext())
-            {
-                c.Database.EnsureCreated();
-            }*/
         }
 
         public static void UseSqlite(this DbContextOptionsBuilder options)

@@ -1,11 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { catchError, map, find, first } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { PizzaService } from 'src/app/core/services/http/pizza.service';
 import { Pizza } from '../../models/pizza.model';
 import { Topping } from '../../models/topping.model';
-import { MessageService } from 'src/app/core/services/message.service';
+import { PizzaError } from 'src/app/core/errors/pizzaerror.mode';
+import { ProgressService } from 'src/app/core/services/ui/progress.service';
 
 @Component({
   selector: 'order-pizza',
@@ -21,9 +22,12 @@ export class PizzaComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private activeRouter: ActivatedRoute, 
+    private activeRouter: ActivatedRoute,
     private service: PizzaService,
-    private popup: MessageService) { }
+    private progress: ProgressService,
+    vcr: ViewContainerRef) {
+    progress.viewContainerRef = vcr;
+  }
 
   ngOnInit() {
     const id: number = +this.activeRouter.snapshot.paramMap.get("id");
@@ -38,14 +42,6 @@ export class PizzaComponent implements OnInit {
             );
         }
       );
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {  
-      console.error(error);
-      this.popup.showMessage(error, true);
-      return of(result as T);
-    };
   }
 
   get pizza() {
@@ -89,7 +85,7 @@ export class PizzaComponent implements OnInit {
       .subscribe(
         found => data = found);
     return data;
-  }  
+  }
 
   addToppingImpl(topping: Topping) {
     if (topping) {
@@ -101,7 +97,7 @@ export class PizzaComponent implements OnInit {
   }
 
   removeToppingImpl(topping: Topping) {
-    if (topping) {      
+    if (topping) {
       const index = this._selectedToppings.indexOf(topping, 0);
       if (index > -1) {
         this._selectedToppings.splice(index, 1);
@@ -112,17 +108,17 @@ export class PizzaComponent implements OnInit {
     }
   }
 
-  saverOrder(event: MouseEvent){
-    this.isSavingOrder = true;
-    let ret:boolean;
+  saverOrder() {
+    this.progress.showProgress();
     this.service.orderPizza(this._pizza, this._selectedToppings)
-      .pipe(
-        map(x=> ret = x),
-        catchError(this.handleError<boolean>('saverOrder', false)));
-    this.isSavingOrder = false;
-    if (ret){
-      this.popup.showMessage("Order placed successfully");
-      this.router.navigateByUrl('/order');
-    }
+      .subscribe(res => {
+        this.progress.hideProgress();
+        this.progress.showMessage("Order placed successfully");
+        this.router.navigateByUrl('/order');
+      },
+        (err: PizzaError) => {
+          this.progress.hideProgress();
+          this.progress.showMessage(err.message, true);
+        });
   }
 }

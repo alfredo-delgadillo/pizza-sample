@@ -1,7 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 
 :root {
-  --primary-color: #7700FF;
+  --primary-color: #7e57c2;
+  --secondary-color: #4d2c91;
+  --third-color: #b085f5;
 }
 
 body,
@@ -37,55 +39,26 @@ section {
   padding: 2em;
 }
 
-.progress {
-  display: block;
+.success {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.success button {
+  background-color: white;
+  color: black;
+}
+
+.error {
+  background-color: #7b1fa2;
+  color: white;
+}
+
+.error button {
+  background-color: white;
+  color: black;
+}
+
+.cdk-visually-hidden {
   visibility: hidden;
-  border-radius: 6px;
-  border: 1px solid #1DAABD;
-  overflow-y: hidden;
-  max-height: 100%;
-  outline: 0 !important;
-  padding-bottom: 3px;
-  top: 16px;
-  bottom: 16px;
-  right: 4em;
-  left: 4em;
-  margin: auto;
-  background-color: #e6f0f4;
-  box-shadow: 0 0 12px 0 rgba(29, 170, 189, .3);
-  overflow: hidden;
-  z-index: 5;
-
-  .loading {
-    min-height: 128px;
-    min-width: 128px;
-    visibility: visible;
-    position: fixed;
-
-    :before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 128px;
-      height: 128px;
-      border: 12.8px solid rgba(67, 128, 152, .5);
-      border-radius: 50%;
-      border-left-color: var(--primary-color);
-      border-top-color: var(--primary-color);
-      animation: spin 1.8s linear infinite;
-      transform-origin: 0 0;
-      z-index: 1;
-    }
-  }
-}
-
-.materialdialog .error {
-    background-color: rgba(255, 0, 0, 0.719);
-    color: white;    
-}
-
-.materialdialog .error button {
-    background-color:orangered;
-    color: white;
 }

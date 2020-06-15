@@ -1,0 +1,17 @@
+{
+  "name": "pizza-sequelize",
+  "version": "1.0.0",
+  "description": "Database access module",
+  "main": "models/index.js",
+  "dependencies": {
+    "pg": "^8.2.1",
+    "sequelize-cli": "^5.5.1",
+    "sequelize": "^5.21.12"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alfredo",
+  "license": "MIT"
+}

@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+    db:
+        container_name: postgres-pizza
+        image: postgres:11.8
+        environment: 
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: secret
+        volumes:
+            - ./pgdata:/var/lib/postgressql/data
+        ports:
+            - "5432:5432"
+    app:
+        container_name: pizza-sequelize
+        working_dir: /usr/src/app
+        environment: 
+            NODE_ENV: test
+        #restart: always
+        entrypoint: ["/bin/bash", "./dbscripts.sh"]
+        image: node:14
+        volumes: 
+            - .:/usr/src/app
+        build: .
+        depends_on: 
+            - db
